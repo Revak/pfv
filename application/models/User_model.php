@@ -14,6 +14,20 @@ class User_model extends CI_Model {
         return (!isset($result)) ? false : $result;
     }
 
+    public function getUserById($id) {
+        $query = $this->db->get_where('pfv_user', array('id' => $id));
+        $result = $query->row();
+
+        return (!isset($result)) ? false : $result;
+    }
+
+    public function getUsername($id) {
+        $query = $this->db->get_where('pfv_user', array('id' => $id));
+        $result = $query->row();
+
+        return (!isset($result)) ? false : $result->name;
+    }
+
     public function login($name, $password) {
         $query = $this->db->get_where('pfv_user', array('name' => $name, 'password' => $password));
         $result = $query->row();

@@ -282,8 +282,7 @@ class Page extends CI_Controller {
         $mails = $this->user_model->getMailsForAlerts($new_gift['owner_id']);
 
         // user data
-        $user = $this->user_model-getUserById($new_gift['owner_id']);
-        $username = ucfirst($user['name']);
+        $username = ucfirst($this->user_model->getUsername($new_gift['owner_id']));
 
         // send
         $this->load->library('email');
@@ -293,8 +292,7 @@ class Page extends CI_Controller {
             $this->email->from('admin@pfv.fr', 'La porte du frigo virtuelle');
             $this->email->to($mail);
             $this->email->subject('Nouveau cadeau ajouté');
-            $this->email->message("Bonjour, \n ".$username." vient d'ajouter le cadeau suivant à sa liste : \n"
-                .$new_gift['name']."\n"
+            $this->email->message("Bonjour, \n ".$username." vient d'ajouter le cadeau suivant à sa liste : ".$new_gift['name']."\n"
                 ."Connectez-vous sur le site pour consulter les listes.");
             // $this->email->send();
         }
