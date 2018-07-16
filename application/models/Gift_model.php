@@ -10,28 +10,28 @@ class Gift_model extends CI_Model {
         if ($short) {
             $this->db->select('id, title');
         }
-        $query  = $this->db->get_where('pfv_gift', array('id' => $id));
+        $query  = $this->db->get_where('pfv_gift', ['id' => $id]);
         return $query->row_array();
     }
 
     public function add($postData) {
-        $newGift = array(
+        $newGift = [
             'title'         => $postData['name'],
             'url'           => $postData['url'],
             'description'   => $postData['description'],
             'owner'         => $postData['owner_id'],
             'year'          => date('Y'),
-        );
+        ];
 
         $this->db->insert('pfv_gift', $newGift);
     }
 
     public function update($postData) {
-        $newGift = array(
+        $newGift = [
             'title'         => $postData['name'],
             'url'           => $postData['url'],
             'description'   => $postData['description'],
-        );
+        ];
 
         $this->db->where('id', $postData['gift_id']);
         $this->db->update('pfv_gift', $newGift);

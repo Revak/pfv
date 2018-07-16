@@ -7,21 +7,21 @@ class Suggestion_model extends CI_Model {
     }
 
     public function getById($id) {
-        $query  = $this->db->get_where('pfv_suggestion', array('id' => $id));
+        $query  = $this->db->get_where('pfv_suggestion', ['id' => $id]);
         return $query->row_array();
     }
 
     public function getByTarget($target_id) {
-        $query  = $this->db->get_where('pfv_suggestion', array('target' => $target_id));
+        $query  = $this->db->get_where('pfv_suggestion', ['target' => $target_id]);
         return $query->result_array();
     }
 
     public function add($postData) {
-        $newSuggestion = array(
+        $newSuggestion = [
             'text'   => $postData['suggestionText'],
             'author' => $postData['author_id'],
             'target' => $postData['target_id'],
-        );
+        ];
 
         $this->db->insert('pfv_suggestion', $newSuggestion);
     }

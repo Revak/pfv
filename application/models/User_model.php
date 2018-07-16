@@ -8,35 +8,35 @@ class User_model extends CI_Model {
     }
 
     public function getUserByName($name) {
-        $query = $this->db->get_where('pfv_user', array('name' => $name));
+        $query = $this->db->get_where('pfv_user', ['name' => $name]);
         $result = $query->row();
 
         return (!isset($result)) ? false : $result;
     }
 
     public function getUserById($id) {
-        $query = $this->db->get_where('pfv_user', array('id' => $id));
+        $query = $this->db->get_where('pfv_user', ['id' => $id]);
         $result = $query->row();
 
         return (!isset($result)) ? false : $result;
     }
 
     public function getUsername($id) {
-        $query = $this->db->get_where('pfv_user', array('id' => $id));
+        $query = $this->db->get_where('pfv_user', ['id' => $id]);
         $result = $query->row();
 
         return (!isset($result)) ? false : $result->name;
     }
 
     public function login($name, $password) {
-        $query = $this->db->get_where('pfv_user', array('name' => $name, 'password' => $password));
+        $query = $this->db->get_where('pfv_user', ['name' => $name, 'password' => $password]);
         $result = $query->row();
 
         return (!isset($result)) ? false : $result;
     }
 
     public function isValidEmail($mail) {
-        $query = $this->db->get_where('pfv_user', array('mail' => $mail));
+        $query = $this->db->get_where('pfv_user', ['mail' => $mail]);
         $result = $query->row();
 
         return (!isset($result)) ? false : $result->id;
@@ -49,7 +49,7 @@ class User_model extends CI_Model {
     }
 
     public function isValidPassword($id, $password) {
-        $query = $this->db->get_where('pfv_user', array('id' => $id));
+        $query = $this->db->get_where('pfv_user', ['id' => $id]);
         $result = $query->row();
         return password_verify($password, $result->password);
     }
@@ -77,7 +77,7 @@ class User_model extends CI_Model {
     public function getMailsForAlerts($user)
     {
         $this->db->select('mail');
-        $query = $this->db->get_where('pfv_user', ['id!=' => $user]);
+        $query = $this->db->get_where('pfv_user', ['id!=' => $user, 'alerts' => 1]);
         return $result = $query->result_array();
     }
 }
