@@ -3,3 +3,5 @@ application/config/database_params.php
 
 # logs
 application/logs/*
+
+.htaccess
