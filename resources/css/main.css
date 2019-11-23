@@ -99,6 +99,7 @@ aside {
     display: inline-block;
     vertical-align: top;
     background: #ecf9ff;
+    border-radius: 7px;
 }
 main {
     width: 53%;
@@ -113,6 +114,8 @@ main {
     text-align: center;
     padding: 5px 0px;
     margin: auto;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
 }
 .family {
     list-style: none;
@@ -146,7 +149,7 @@ main ul {
 }
 main li {
     margin-bottom: 5px;
-    padding: 5px;
+    padding: 5px 0;
 }
 main li h4 {
     padding: 10px;
@@ -178,6 +181,7 @@ main li span.resa, main li .cancel_resa {
     padding: 2px 5px;
     border: solid 1px #4d1c89;
     color: #fff;
+    border-radius: 4px;
 }
 main li span.resa:hover, main li .cancel_resa:hover {
     background: #fff;
@@ -190,6 +194,7 @@ main li span.edit {
     padding: 2px 5px;
     border: solid 1px #914e01;
     color: #fff;
+    border-radius: 4px;
 }
 main li span.edit:hover {
     background: #fff;
@@ -202,6 +207,7 @@ main li span.del {
     padding: 2px 5px;
     border: solid 1px #af1403;
     color: #fff;
+    border-radius: 4px;
 }
 main li span.del:hover {
     background: #fff;
@@ -222,6 +228,7 @@ main .lastAction .addGift {
     border: solid 1px #0394c4;
     padding: 2px 5px;
     color: #fff;
+    border-radius: 4px;
 }
 main .lastAction .addGift:hover {
     cursor: pointer;
@@ -278,6 +285,7 @@ main .hidden {
     border: solid 1px #1ac6ff;
     padding: 20px 100px;
     margin-bottom: 20px;
+    border-radius: 7px;
 }
 #account_container form label {
     width: 200px;
@@ -331,6 +339,7 @@ main .hidden {
     padding: 20px;
     border: 1px solid #888;
     width: 40%;
+    border-radius: 7px;
 }
 .close {
     color: #f00;
@@ -374,6 +383,7 @@ main .hidden {
     padding: 4px;
     margin: 10px 0 15px 0;
     background: #ccf2ff;
+    border-radius: 7px;
 }
 .modal-content label {
     width: 30%;

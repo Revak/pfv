@@ -194,12 +194,12 @@ class Page extends CI_Controller {
                 }
                 $data['gift_id']  = $this->input->post('elementId');
                 $data['owner_id'] = $_SESSION['userId'];
-                
+
                 echo $this->load->view('modals/gift_form', $data, true);
             } elseif ($formType == 'suggestion') {
                 $data['target'] = $this->input->post('elementId');
                 $data['author'] = $_SESSION['userId'];
-                
+
                 echo $this->load->view('modals/suggestion_form', $data, true);
             }
         }
@@ -260,7 +260,7 @@ class Page extends CI_Controller {
             $this->load->model('suggestion_model');
             $this->load->model('user_model');
 
-            $data['suggestions'] = $this->suggestion_model->getByTarget($this->input->post('targetId'));
+            $data['suggestions'] = $this->suggestion_model->getByTargetForCurrentYear($this->input->post('targetId'));
             $data['users'] = $this->user_model->getUserList();
             echo $this->load->view('pages/suggestionList', $data, true);
         }

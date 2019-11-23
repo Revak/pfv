@@ -12,11 +12,11 @@
   crossorigin="anonymous">
   </script>
   <script type="text/javascript" src="<?php echo base_url(); ?>resources/js/main.js"></script>
-  
+
     <div id="banner">
         <h1>La porte du frigo virtuelle</h1>
-        <?php 
-            $uriLast = $last = $this->uri->total_segments(); 
+        <?php
+            $uriLast = $last = $this->uri->total_segments();
             $activePage = $this->uri->segment($uriLast);
             if ($activePage == 'login') $activePage = 'giftList';
         ?>
@@ -30,6 +30,3 @@
             <?php endif ?>
         </nav>
     </div>
-
-    
-
