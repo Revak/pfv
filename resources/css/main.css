@@ -266,18 +266,27 @@ main .hidden {
     margin: auto;
     text-align: center;
 }
-#news_container dl {
-    margin: auto;
-    margin-top: 30px;
-    width: 50%;
+#news_container table {
+    border: 1px solid black;
+    border-collapse: collapse;
 }
-#news_container dt {
+#news_container table td {
+    padding: 5px;
+    border: 1px solid black;
+}
+#news_container table td:first-child {
+    background-color: #eee;
+    width: 25%;
+    text-align: center;
+}
+#news_container table td.version_number {
+    text-align: center;
     font-weight: bold;
-    margin-bottom: 10px;
+    background-color: #1ac6ff;
+    color: #fff;
 }
-#news_container dd {
-    margin: 0;
-    margin-bottom: 20px;
+#news_container table td.no_content{
+    text-align: center;
 }
 #account_container form {
     width: 360px;
