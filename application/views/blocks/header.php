@@ -26,7 +26,7 @@
             <a class="<?php echo ($activePage == 'news')        ? 'active' : ''; ?>" href="<?= site_url('page/news'); ?>">Nouveautés</a>
             <a class="<?php echo ($activePage == 'editAccount') ? 'active' : ''; ?>" href="<?= site_url('page/editAccount'); ?>">Mon compte</a>
             <?php if (@$_SESSION['userAdmin'] == 1) : ?>
-                <a class="<?php echo ($activePage == 'admin')   ? 'active' : ''; ?>" href="<?= site_url('page/admin'); ?>">Admin</a>
+                <a class="<?php echo ($activePage == 'admin')   ? 'active' : ''; ?>" href="<?= site_url('admin'); ?>">Admin</a>
             <?php endif ?>
         </nav>
     </div>

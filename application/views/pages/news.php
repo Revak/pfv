@@ -14,7 +14,7 @@
         <td class="no_content">-</td>
       </tr>
       <tr>
-        <td>Correction de bugs sur l'envoi des notifications</td>
+        <td>Correction de bugs divers</td>
         <td class="no_content">-</td>
       </tr>
       <tr>

@@ -1,13 +1,14 @@
 <?php
 
 class Gift_model extends CI_Model {
-    
+
     public function __construct() {
         $this->load->database();
     }
 
     public function getById($id, $short = false) {
-        if ($short) {
+        if ($short)
+        {
             $this->db->select('id, title');
         }
         $query  = $this->db->get_where('pfv_gift', ['id' => $id]);
@@ -49,14 +50,19 @@ class Gift_model extends CI_Model {
     }
 
     public function getGiftsByYear($year = '') {
-        if ($year == '') $year = date('Y');
+        // current year by default
+        if ($year == '')
+        {
+          $year = date('Y');
+        }
 
         $this->db->order_by('owner ASC, id ASC');
         $query  = $this->db->get_where('pfv_gift', ['year' => $year]);
         $gifts = $query->result_array();
 
         $grouped_gifts = [];
-        foreach ($gifts as $gift) {
+        foreach ($gifts as $gift)
+        {
             $grouped_gifts[$gift['owner']][$gift['id']] = $gift;
         }
         return $grouped_gifts;
@@ -69,5 +75,4 @@ class Gift_model extends CI_Model {
         $query = $this->db->get_where('pfv_gift', ['year !=' => date('Y')]);
         return $query->result();
     }
-
 }

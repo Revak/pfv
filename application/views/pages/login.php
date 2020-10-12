@@ -5,9 +5,9 @@
     <?php
     echo validation_errors();
 
-    echo (isset($form_error)) ? $form_error : '';
+    echo (isset($form_error)) ? '<div class="error_msg">' . $form_error . '</div>' : '';
 
-    echo form_open('page/login');
+    echo form_open('access/login');
     ?>
         <label>Identifiant </label>
         <input type="text" name="name">
@@ -20,7 +20,7 @@
         <a href="">J'ai oublié mon mot de passe</a>
 
         <?php
-        echo form_open('page/forgottenPwd');
+        echo form_open('access/forgottenPwd');
         ?>
             <label>Adresse email </label>
             <input type="email" name="mail">

@@ -89,6 +89,10 @@ nav a.active {
     margin-top: 10px;
     display: none;
 }
+.error_msg {
+  color: #f00;
+  text-align: center;
+}
 #container {
     width: 100%;
     padding: 0.5%;

@@ -3,10 +3,10 @@
 
     <div class="changeAlerts">
         <h4>Gestion des options</h4>
-        
+
         <div class="flash"><?= ($this->session->flashdata('form_msg')) ? $this->session->flashdata('form_msg') : '' ?></div>
         <?php
-        echo form_open('page/changeAlertSettings');
+          echo form_open('page/changeAlertSettings');
         ?>
             <label>Activer les alertes de nouveaux cadeaux</label>
             <?php $checked = ($_SESSION['userAlerts'] == 1) ? 'checked' : ''; ?>
@@ -22,9 +22,10 @@
 
     <div class="changePwd">
         <h4>Changer mon mot de passe</h4>
-
         <?php
-        echo form_open('page/editPwd');
+          echo (isset($form_error)) ? '<div class="error_msg">' . $form_error . '</div>' : '';
+
+          echo form_open('access/editPwd');
         ?>
             <label for="old_pass">Mot de passe actuel </label>
             <input type="password" name="old_pwd" id="old_pass" autocomplete="off">
@@ -36,6 +37,5 @@
         </form>
     </div>
 
-    <a href="<?= site_url('page/logout'); ?>">Déconnexion</a>
+    <a href="<?= site_url('access/logout'); ?>">Déconnexion</a>
 </div>
-
