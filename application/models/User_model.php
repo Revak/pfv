@@ -93,7 +93,7 @@ class User_model extends CI_Model {
     }
 
     public function getUserList() {
-        $this->db->select('id, name');
+        $this->db->select('id, name, hasList');
         $this->db->order_by('name', 'ASC');
         $query = $this->db->get(self::MODEL_TABLE);
         $result = $query->result_array();

@@ -60,6 +60,8 @@ class Access extends CI_Controller {
             $_SESSION['userMail']   = $user->mail;
             $_SESSION['userAlerts'] = $user->alerts;
             $_SESSION['userAdmin']  = $user->isAdmin;
+            $_SESSION['userHasList']  = $user->hasList;
+            $_SESSION['userViews']  = $user->allowedViews ? explode(',', $user->allowedViews) : null;
 
             redirect('page/index');
         } else {
