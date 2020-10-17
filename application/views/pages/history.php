@@ -10,8 +10,15 @@
         <h3>Choisir une personne</h3>
         <ul class="family histo">
             <?php foreach ($users as $user) {
-                $class = ($user['id'] == $_SESSION['userId']) ? 'selectedPerson' : '';
-                echo '<li id="fam'.$user['id'].'" class="'.$class.'">'.$user['name'].'</li>';
+              if ($user['hasList'])
+              {
+                // user view restrictions
+                if (!$_SESSION['userViews'] || (in_array(strtolower($user['name']), $_SESSION['userViews'], false)) || $user['id'] === $_SESSION['userId'])
+                {
+                  $class = ($user['id'] == $_SESSION['userId']) ? 'selectedPerson' : '';
+                  echo '<li id="fam'.$user['id'].'" class="'.$class.'">'.$user['name'].'</li>';
+                }
+              }
             } ?>
         </ul>
     </aside>
