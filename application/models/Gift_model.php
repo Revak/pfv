@@ -2,6 +2,8 @@
 
 class Gift_model extends CI_Model {
 
+    const MODEL_TABLE = 'pfv_gift';
+
     public function __construct() {
         $this->load->database();
     }
@@ -11,7 +13,7 @@ class Gift_model extends CI_Model {
         {
             $this->db->select('id, title');
         }
-        $query  = $this->db->get_where('pfv_gift', ['id' => $id]);
+        $query  = $this->db->get_where(self::MODEL_TABLE, ['id' => $id]);
         return $query->row_array();
     }
 
@@ -24,7 +26,7 @@ class Gift_model extends CI_Model {
             'year'          => date('Y'),
         ];
 
-        $this->db->insert('pfv_gift', $newGift);
+        $this->db->insert(self::MODEL_TABLE, $newGift);
     }
 
     public function update($postData) {
@@ -35,18 +37,18 @@ class Gift_model extends CI_Model {
         ];
 
         $this->db->where('id', $postData['gift_id']);
-        $this->db->update('pfv_gift', $newGift);
+        $this->db->update(self::MODEL_TABLE, $newGift);
     }
 
     public function reserve($gift_id, $reserver_id) {
         $newGift = ['reserver' => $reserver_id];
 
         $this->db->where('id', $gift_id);
-        $this->db->update('pfv_gift', $newGift);
+        $this->db->update(self::MODEL_TABLE, $newGift);
     }
 
     public function delete($id) {
-        $this->db->delete('pfv_gift', ['id' => $id]);
+        $this->db->delete(self::MODEL_TABLE, ['id' => $id]);
     }
 
     public function getGiftsByYear($year = '') {
@@ -57,7 +59,7 @@ class Gift_model extends CI_Model {
         }
 
         $this->db->order_by('owner ASC, id ASC');
-        $query  = $this->db->get_where('pfv_gift', ['year' => $year]);
+        $query  = $this->db->get_where(self::MODEL_TABLE, ['year' => $year]);
         $gifts = $query->result_array();
 
         $grouped_gifts = [];
@@ -72,7 +74,7 @@ class Gift_model extends CI_Model {
         $this->db->distinct();
         $this->db->select('year');
         $this->db->order_by('year', 'DESC');
-        $query = $this->db->get_where('pfv_gift', ['year !=' => date('Y')]);
+        $query = $this->db->get_where(self::MODEL_TABLE, ['year !=' => date('Y')]);
         return $query->result();
     }
 }

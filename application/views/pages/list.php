@@ -30,17 +30,17 @@
                         <div class="actions">
                             <?php
                             if ($gift['owner'] == $_SESSION['userId']) { ?>
-                                <span class="edit" data-gift-id="<?= $gift['id'] ?>">Modifier</span>
-                                <span class="del" data-gift-id="<?= $gift['id'] ?>">Supprimer</span>
+                                <span class="btnEdit editGift" data-gift-id="<?= $gift['id'] ?>">Modifier</span>
+                                <span class="btnDel delGift" data-gift-id="<?= $gift['id'] ?>">Supprimer</span>
                                 <?php $addGiftOK = true; ?>
-                            <?php } else { 
+                            <?php } else {
                                 if ($gift['reserver'] == 0) { ?>
                                     <span class="resa" data-gift-id="<?= $gift['id'] ?>">Réserver</span>
                             <?php } else { ?>
                                     <span class="reserved">Réservé par <strong><?= ucfirst($users[$gift['reserver']]['name']) ?></strong></span>
                                     <?php if ($gift['reserver'] == $_SESSION['userId']) { ?>
                                         <button class="cancel_resa" data-gift-id="<?= $gift['id'] ?>">Annuler réservation</button>
-                                    <?php } 
+                                    <?php }
                             }
                         } ?>
                         </div>
@@ -65,5 +65,5 @@
         </div>
         <p><span class="addSuggest">Ajouter une suggestion</span></p>
     </aside>
-   
+
 </div>

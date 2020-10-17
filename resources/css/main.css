@@ -193,27 +193,27 @@ main li span.resa:hover, main li .cancel_resa:hover {
     color: #a668f2;
     cursor: pointer;
 }
-main li span.edit {
+.btnEdit {
     background: #e88310;
     padding: 2px 5px;
     border: solid 1px #914e01;
     color: #fff;
     border-radius: 4px;
 }
-main li span.edit:hover {
+.btnEdit:hover {
     background: #fff;
     border: solid 1px #e88310;
     color: #e88310;
     cursor: pointer;
 }
-main li span.del {
+.btnDel {
     background: #db3523;
     padding: 2px 5px;
     border: solid 1px #af1403;
     color: #fff;
     border-radius: 4px;
 }
-main li span.del:hover {
+.btnDel:hover {
     background: #fff;
     border: solid 1px #db3523;
     color: #db3523;
@@ -395,8 +395,7 @@ main .hidden {
     font-size: larger;
     padding: 4px;
     margin: 10px 0 15px 0;
-    background: #ccf2ff;
-    border-radius: 7px;
+    color: #1ac6ff;
 }
 .modal-content label {
     width: 30%;
@@ -485,4 +484,17 @@ input:checked + .slider:before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
   transform: translateX(26px);
+}
+#admin_container .buttonBar {
+    margin-bottom: 30px;
+}
+#admin_container #userList {
+  width: 80%;
+  margin: auto;
+}
+#admin_container #userList td:first-child {
+  width: 80%;
+  padding: 5px 50px;
+  background: #eee;
+  border-radius: 10px 0 10px 0;
 }

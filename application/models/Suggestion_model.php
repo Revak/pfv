@@ -2,17 +2,19 @@
 
 class Suggestion_model extends CI_Model {
 
+    const MODEL_TABLE = 'pfv_suggestion';
+
     public function __construct() {
         $this->load->database();
     }
 
     public function getById($id) {
-        $query  = $this->db->get_where('pfv_suggestion', ['id' => $id]);
+        $query  = $this->db->get_where(self::MODEL_TABLE, ['id' => $id]);
         return $query->row_array();
     }
 
     public function getByTargetForCurrentYear($target_id) {
-        $query  = $this->db->get_where('pfv_suggestion', ['target' => $target_id, 'year' => date('Y')]);
+        $query  = $this->db->get_where(self::MODEL_TABLE, ['target' => $target_id, 'year' => date('Y')]);
         return $query->result_array();
     }
 
@@ -24,10 +26,10 @@ class Suggestion_model extends CI_Model {
             'year'   => date('Y')
         ];
 
-        $this->db->insert('pfv_suggestion', $newSuggestion);
+        $this->db->insert(self::MODEL_TABLE, $newSuggestion);
     }
 
     public function delete($id) {
-        $this->db->delete('pfv_suggestion', ['id' => $id]);
+        $this->db->delete(self::MODEL_TABLE, ['id' => $id]);
     }
 }

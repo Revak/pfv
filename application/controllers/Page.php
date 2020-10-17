@@ -120,7 +120,8 @@ class Page extends CI_Controller {
     public function getModalConfirm() {
         if ($this->input->is_ajax_request())
         {
-            $data['gift'] = $this->gift_model->getById($this->input->post('elementId'), true);
+            $data['element'] = $this->gift_model->getById($this->input->post('elementId'), true);
+            $data['element']['type'] = 'gift';
             echo $this->load->view('modals/del_confirm', $data, true);
         }
     }
@@ -128,7 +129,7 @@ class Page extends CI_Controller {
     public function deleteGift() {
         if ($this->input->is_ajax_request())
         {
-           $this->gift_model->delete($this->input->post('giftId'));
+           $this->gift_model->delete($this->input->post('elementId'));
        }
     }
 

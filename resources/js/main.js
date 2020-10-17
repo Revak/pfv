@@ -12,7 +12,7 @@
 
     // sélection d'une personne
     $('.family li').on('click', function() {
-        selectPerson($(this));  
+        selectPerson($(this));
     });
 
     // changement d'année en historique
@@ -27,12 +27,12 @@
     });
 
     // modification de cadeau
-    $('.edit').on('click', function() {
+    $('.editGift').on('click', function() {
         getFormModal('gift', $(this).data('gift-id'));
     });
 
     // suppression de cadeau
-    $('.del').on('click', function() {
+    $('.delGift').on('click', function() {
         getFormModal('gift', $(this).data('gift-id'), true);
     });
 
@@ -58,6 +58,21 @@
         })
     });
 
+    // ajout d'utilisateur
+    $('.addUser').on('click', function() {
+        getFormModal('user');
+    });
+
+    // modification d'utilisateur
+    $('.editUser').on('click', function() {
+        getFormModal('user', $(this).data('user-id'));
+    });
+
+    // suppression d'utilisateur
+    $('.delUser').on('click', function() {
+        getFormModal('user', $(this).data('user-id'), true);
+    });
+
     // fermer modale
         // clic sur la croix
         $(document).on('click', '.close', function() {
@@ -67,27 +82,39 @@
         // touche echap
         $(document).on('keydown', function(e) {
             if ($('.modal-layer').length > 0) {
-                if (e.keyCode == 27) { 
+                if (e.keyCode == 27) {
                     $('.modal-layer').remove();
                 }
-            } 
+            }
         });
-        
+
     // confirmation de suppression
     $(document).on('click', '.confirmN', function() {
         $('.modal-layer').remove();
     });
     $(document).on('click', '.confirmY', function() {
-        var delGiftId = $(this).data('gift-id');
+        var delElementId = $(this).data('element-id');
+        var url = successPageUrl= '';
+        if ($(this).data('element-type') === 'gift')
+        {
+          url = 'deleteGift';
+          successPageUrl = '/pfv/index.php/page/giftList';
+        }
+        else if ($(this).data('element-type') === 'user')
+        {
+          url = 'admin/deleteUser';
+          successPageUrl = '/pfv/index.php/admin';
+        }
+
         $.ajax({
-            url: 'deleteGift',
+            url: url,
             type: 'POST',
             data: {
-                giftId: delGiftId,
+                elementId: delElementId,
                 csrf_token_name: getCookieValue('pfvcsrf_cookie_name')
             }
         }).done(function() {
-            window.location.href = '/pfv/index.php/page/giftList';
+            window.location.href = successPageUrl;
         })
     });
 
@@ -152,7 +179,7 @@
     function selectPerson(selection) {
         $('.family li').removeClass('selectedPerson');
         selection.addClass('selectedPerson');
-        
+
         var activeUser = selection.attr('id');
         activeUser = activeUser.replace('fam', '');
         var activeUserName = selection.text();
@@ -160,7 +187,7 @@
         // maj du titre
         $('main h3 span').replaceWith('<span>'+activeUserName+'</span>');
         $('main h3 span').css('text-transform', 'capitalize');
-        
+
         if (!selection.parent().hasClass('histo')) {
             $('#blockSuggestion h3 span').replaceWith('<span>'+activeUserName+'</span>');
             $('#blockSuggestion h3 span').css('text-transform', 'capitalize');
@@ -194,7 +221,7 @@
             }
         }).done(function(data) {
             $('.giftList').html(data);
-            selectPerson($('.selectedPerson'));  
+            selectPerson($('.selectedPerson'));
         })
     }
 
@@ -223,10 +250,10 @@
         // base de la modal
         var modalStart = '<div class="modal-layer">'+
                             '<div class="modal-content">'+
-                                '<span class="close">&times;</span>'; 
+                                '<span class="close">&times;</span>';
         var content = '';
         var modalEnd = '</div>'+
-                    '</div>';                 
+                    '</div>';
 
         if (formType == 'gift') {
             if (!$del) {
@@ -266,8 +293,31 @@
                 }).done(function(data) {
                     $('body').append(modalStart+data+modalEnd);
                 })
+            }
+        } else if (formType == 'user') {
+            if (!$del) {
+                $.ajax({
+                    url: 'admin/getModalForm',
+                    type: 'POST',
+                    data: {
+                        formType: 'user',
+                        elementId: elementId,
+                        csrf_token_name: getCookieValue('pfvcsrf_cookie_name')
+                    }
+                }).done(function(data) {
+                    $('body').append(modalStart+data+modalEnd);
+                })
             } else {
-
+                $.ajax({
+                    url: 'admin/getModalConfirm',
+                    type: 'POST',
+                    data: {
+                        elementId: elementId,
+                        csrf_token_name: getCookieValue('pfvcsrf_cookie_name')
+                    }
+                }).done(function(data) {
+                    $('body').append(modalStart+data+modalEnd);
+                })
             }
         }
     }
