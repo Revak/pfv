@@ -112,10 +112,23 @@ class User_model extends CI_Model {
         $_SESSION['userAlerts'] = $alerts;
     }
 
-    public function getMailsForAlerts($user)
+    public function getMailsForAlerts($userId, $userName)
     {
-        $this->db->select('mail');
-        $query = $this->db->get_where(self::MODEL_TABLE, ['id!=' => $user, 'alerts' => 1]);
-        return $result = $query->result_array();
+        $this->db->select('mail, allowedViews');
+        $query = $this->db->get_where(self::MODEL_TABLE, ['id!=' => $userId, 'alerts' => 1]);
+        $results = $query->result_array();
+        return $this->filterUserMailResults($results, $userName);
+    }
+
+    protected function filterUserMailResults($usersData, $userName)
+    {
+        $mails = [];
+        foreach ($usersData as $data) {
+            if (!$data['allowedViews'] || strpos($data['allowedViews'], strtolower($userName)) !== false)
+            {
+                $mails[] = $data['mail'];
+            }
+        }
+        return $mails;
     }
 }
