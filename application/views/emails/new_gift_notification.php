@@ -24,8 +24,8 @@
     <p style="Margin-bottom: 25px">
       <?= $userName ?> vient d'ajouter le cadeau suivant à sa liste :
       <ul>
-        <li><?php echo $gift['name']; ?>
-          (<a href="<?php echo $gift['url']; ?>">Lien d'exemple</a>)
+        <li>
+          <?php echo $gift['name']?>
         </li>
       </ul>
       Connectez-vous sur

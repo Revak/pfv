@@ -188,7 +188,12 @@ class Page extends CI_Controller {
 
         // send
         $this->load->library('email');
-        $this->email->initialize(['mailtype' => 'html']);
+        $this->email->initialize([
+          'mailtype' => 'html',
+          'priority' => 3,
+          'charset' => 'utf-8',
+          'crlf' => "rn"
+        ]);
 
         foreach ($mails as $mail) {
             $this->email->clear();
